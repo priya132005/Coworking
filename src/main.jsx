@@ -1,51 +1,25 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
-import './index.css'
-import {RouterProvider,createBrowserRouter} from 'react-router-dom'
-import Layouts from './Layouts.jsx'
-import Home from './components/Home/Home.jsx'
-import About from './components/About/About.jsx'
-import Contact from './Contact/Contact.jsx'
-import User from './components/User/User.jsx'
-const router =createBrowserRouter([
 
-  {
-    path:'/',
-    element:<Layouts/>,
-    children:[
-      {
-        path:"",
-        element:<Home/>
+import React from 'react';
+import { createRoot } from 'react-dom/client'; // Correct import
+import App from './App.jsx';
+import './index.css';
+import Router from './Routers/Index.jsx';
+import { RouterProvider } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { store, persistor } from './Store/Store.js';
+import { PersistGate } from 'redux-persist/integration/react';
 
-      },
-      {
-        path:"about",
-        element:<About/>
-      },
-      {
-        path:"Contact",
-        element:<Contact/>
-      },
+const container = document.getElementById('root');
+const root = createRoot(container); // Create root using createRoot
 
-        {  path:"user:userid",
-          element:<User/>
-        },
-    ]
-  }
-]) 
-// const router =createBrowserRouter(
-//   createRoutersFromElements(
-//     <Route path='/' element={<Layouts/>}>
-//       <Route path='' element={<Home/>}/>
-//       <Route path='about' element={<About/>}/>
-//       <Route path='Contact' element={<Contact/>}/>
-//       <Route path='user/:userid' element={<User/>}/>
-//     </Route>
-//   )
-//   )
-ReactDOM.createRoot(document.getElementById('root')).render(
+root.render(
   <React.StrictMode>
-    <RouterProvider router={router}/>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <RouterProvider router={Router}>
+          <App />
+        </RouterProvider>
+      </PersistGate>
+    </Provider>
   </React.StrictMode>,
-)
+);

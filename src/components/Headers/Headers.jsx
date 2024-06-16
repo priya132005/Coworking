@@ -1,7 +1,31 @@
 import React from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import  {Link,NavLink} from 'react-router-dom'
-
+import SummaryApi from '../../Common';
+import { toast } from 'react-toastify';
+import { setUserDetails } from '../../Store/UserSlice';
 export default function Headers() {
+    const user = useSelector((state) => state.user.user);
+    const dispatch = useDispatch();
+    // const [menuDisplay, setMenuDisplay] = useState(false);
+    const handleLogout = async () => {
+        try {
+          const response = await fetch(SummaryApi.logout_user.url, {
+            method: SummaryApi.logout_user.method,
+            credentials: 'include',
+          });
+          const data = await response.json();
+          if (data.success) {
+            toast.success(data.message);
+            dispatch(setUserDetails(null));
+          } else {
+            toast.error(data.message);
+          }
+        } catch (error) {
+          toast.error('An error occurred during logout.');
+          console.error('Logout error:', error);
+        }
+      };
     return (
         <header className="sticky top-0 z-50 shadow">
             <nav className="bg-white border-gray-200 px-4 lg:px-6 py-2.5">
@@ -14,18 +38,24 @@ export default function Headers() {
                         />
                     </Link>
                     <div className="flex items-center lg:order-2">
-                        <Link
-                            to="#"
+                        <div>
+                    {user?._id ? (
+                <button onClick={handleLogout} className="px-3 py-1 text-white bg-pink-500 rounded-full hover:bg-pink-700">
+                  Logout
+                </button>
+              ) 
+                        :(<Link
+                            to="loginpriya"
                             className="text-gray-800 hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none"
                         >
                             Log in
-                        </Link>
-                        <Link
-                            to="#"
+                        </Link>)}</div>
+                      <div>  <Link
+                            to="/Contact"
                             className="text-white bg-pink-700 hover:bg-pink-800 focus:ring-4 focus:ring-pink-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none"
                         >
                             Get started
-                        </Link>
+                        </Link></div>
                     </div>
                     <div
                         className="items-center justify-between hidden w-full lg:flex lg:w-auto lg:order-1"
