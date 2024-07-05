@@ -85,7 +85,7 @@ function Login() {
                                     {showPassword ? <FaEye /> : <FaEyeSlash />}
                                 </div>
                             </div>
-                            <Link to="/forget-password" className="block mt-2 ml-auto w-fit hover:underline hover:text-green-600">
+                            <Link to="/forget-password" className="block mt-2 ml-auto w-fit hover:underline hover:text-pink-600">
                                 Forgot password?
                             </Link>
                         </div>

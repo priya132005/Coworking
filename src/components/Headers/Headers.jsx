@@ -16,7 +16,7 @@ export default function Headers() {
           });
           const data = await response.json();
           if (data.success) {
-            toast.success(data.message);
+            toast.success(data.message); 
             dispatch(setUserDetails(null));
           } else {
             toast.error(data.message);
@@ -37,7 +37,7 @@ export default function Headers() {
                             alt="Logo"
                         />
                     </Link>
-                    <div className="flex items-center lg:order-2">
+                    <div className="flex items-center gap-6 lg:order-2">
                         <div>
                     {user?._id ? (
                 <button onClick={handleLogout} className="px-3 py-1 text-white bg-pink-500 rounded-full hover:bg-pink-700">
@@ -46,12 +46,12 @@ export default function Headers() {
               ) 
                         :(<Link
                             to="loginpriya"
-                            className="text-gray-800 hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none"
+                            className="text-gray-800 hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none "
                         >
                             Log in
                         </Link>)}</div>
                       <div>  <Link
-                            to="/Contact"
+                            to="/Getstarted"
                             className="text-white bg-pink-700 hover:bg-pink-800 focus:ring-4 focus:ring-pink-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none"
                         >
                             Get started

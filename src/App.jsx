@@ -9,7 +9,7 @@ import Context from './Context/index.js';
 import SummaryApi from './Common';
 import { useDispatch } from 'react-redux';
 import { setUserDetails } from './Store/UserSlice';
-
+import Header from './components/Getstarted/Header/Header.jsx'
 function App() {
     const dispatch =useDispatch()
     const fetchUserDetails = async () => {
@@ -45,6 +45,7 @@ function App() {
                 <Outlet />
             </main>
             <Footer />
+            {/* <Header/> */}
         </Context.Provider>
     );
 }

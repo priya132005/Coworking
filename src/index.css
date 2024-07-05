@@ -1,7 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+*{
+    font-family: "Poppins",sans-serif;
+}
 body{
     margin:0;
-    @apply bg-pink-100 
+    @apply bg-pink-200 
 }

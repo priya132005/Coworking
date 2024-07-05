@@ -5,7 +5,7 @@ export default function Home() {
         <div className="w-full mx-auto max-w-7xl">
             <aside className="relative mx-2 overflow-hidden text-black rounded-lg sm:mx-16 sm:py-16">
                 <div className="relative z-10 max-w-screen-xl px-4 pt-10 pb-20 mx-auto sm:py-24 sm:px-6 lg:px-8">
-                    <div className="max-w-xl space-y-8 text-center sm:mt-1 mt-80 sm:text-right sm:ml-auto">
+                    <div className="max-w-xl gap-10 space-y-8 text-center sm:mt-1 mt-80 sm:text-right sm:ml-auto">
                         <h2 className="text-4xl font-bold sm:text-5xl">
                             Download Now
                             <span className="hidden text-4xl sm:block"><h1>Coworking</h1></span>
@@ -30,7 +30,7 @@ export default function Home() {
                     </div>
                 </div>
 
-                <div className="absolute inset-0 w-full h-full pt-12 sm:my-20 sm:pt-1 ">
+                <div className="absolute inset-0 w-full h-full gap-4 pt-12 sm:my-20 sm:pt-1">
                     <img className="w-96" src="https://static.vecteezy.com/system/resources/previews/002/181/980/non_2x/business-people-working-together-coworking-space-with-creative-or-business-people-sitting-at-the-table-flat-modern-illustration-vector.jpg" alt="image1" />
                 </div>
             </aside>

@@ -8,7 +8,7 @@ import Signup from '../components/Pages/Signup';
 import  About from '../components/About/About';
 import Contact from '../Contact/Contact.jsx';
 import User from '../components/User/User.jsx';
-
+import Getstarted from "../components/Getstarted/Header/Header.jsx"; 
 const Router = createBrowserRouter([
     {
         path: '/',
@@ -21,6 +21,7 @@ const Router = createBrowserRouter([
            {path:'about',element:<About/>},
            {path:'contact',element:<Contact/>},
            {path:'user:userid',element:<User/>},
+           {path:'Getstarted',element:<Getstarted/>},
         ]
     }
 ]);
