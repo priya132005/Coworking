@@ -36,7 +36,7 @@ export default function Home() {
             </aside>
 
             <div className="grid place-items-center sm:mt-20">
-                <img className="w-48 sm:w-96" src="https://img.freepik.com/free-vector/internet-order-delivery-tracking-gps-navigator-service-website-flat-design-element-pointer-magnifier-map-route-online-planning-path-finding_335657-2612.jpg?size=338&ext=jpg&ga=GA1.1.1224184972.1711929600&semt=ais" alt="image2" />
+                <img className="w-48 sm:w-96" src="https://cdni.iconscout.com/illustration/premium/thumb/man-search-location-on-mobile-9871613-8041759.png?f=webp" alt="image2" />
             </div>
 
             <h1 className="py-10 text-2xl font-medium text-center sm:text-5xl">Finding Coworking Place...</h1>

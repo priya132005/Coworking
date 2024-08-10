@@ -16,8 +16,12 @@ const SummaryApi = {
     logout_user:{
         url:`${backendDomain}/api/logout`,
         method:"POST"
-    }
-    
+    },
+    // contact:{
+    //     url:`${backendDomain}/api/contact`,
+    //     method:"POST"
+
+    // }
 
     
 };

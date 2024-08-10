@@ -33,8 +33,9 @@ export default function Headers() {
                     <Link to="/" className="flex items-center">
                         <img
                             src="https://thumbs.dreamstime.com/b/vector-logo-coworking-place-to-work-workspace-195704921.jpg"
-                            className="h-12 mr-3"
+                            className="h-20 mr-3"
                             alt="Logo"
+                          
                         />
                     </Link>
                     <div className="flex items-center gap-6 lg:order-2">
