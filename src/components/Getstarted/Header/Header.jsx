@@ -11,6 +11,7 @@ import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
 import "swiper/css";
 // import "./Residencies.css";
 import { sliderSettings } from "../../../utils/common";
+
 import CountUp from "react-countup";
 import { motion } from "framer-motion";
 import { IoMdSearch } from "react-icons/io";

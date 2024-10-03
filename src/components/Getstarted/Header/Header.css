@@ -132,6 +132,7 @@ a {
     z-index: 99;
     position: sticky;
     top: 0;
+ 
   }
   .h-container {
     padding-top: 1rem;
@@ -193,12 +194,17 @@ a {
   .hero-title {
     position: relative;
     z-index: 1;
-  }
-  .hero-title > h1 {
+  } 
+   .hero-title > h1 {
     font-weight: 600;
     font-size: 3.8rem;
     line-height: 4rem;
   }
+  /* .hero-title > h1 {
+    font-size: 3.5rem;
+    font-weight: bold;
+    line-height: 3.5rem;
+  } */
   .orange-circle {
     height: 4rem;
     width: 4rem;
@@ -220,6 +226,25 @@ a {
   .search-bar > input {
     border: none;
     outline: none;
+  }
+  /* .search-bar {
+    display: flex;
+    border-radius: 1rem;
+    background: var(--lightBlue);
+    width: 50%;
+  }
+  
+  .search-bar input {
+    background: none;
+    border: none;
+    padding: 0.9rem 2rem;
+    width: 100%;
+    outline: none;
+  } */
+  
+  .image-container {
+    width: 95%;
+    height: 35rem;
   }
   .stats{
       width: 100%;

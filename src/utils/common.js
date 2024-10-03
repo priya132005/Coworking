@@ -1,7 +1,9 @@
 export const getMenuStyles = (menuOpened) => {
-  if (document.documentElement.clientWidth <= 800) {
-    return { right: !menuOpened && "-100%" };
+  // Check if the document exists (important in server-side rendering)
+  if (typeof document !== "undefined" && document.documentElement.clientWidth <= 800) {
+    return { right: !menuOpened ? "-100%" : "0" };
   }
+  return {}; // Return empty object for default styles
 };
 
 export const sliderSettings = {
@@ -12,14 +14,15 @@ export const sliderSettings = {
       slidesPerView: 1,
     },
     600: {
-      slidesPerView: 2
+      slidesPerView: 2,
     },
     750: {
-      slidesPerView: 3
+      slidesPerView: 3,
     },
     1100: {
       slidesPerView: 4,
     },
   },
-
 };
+
+
