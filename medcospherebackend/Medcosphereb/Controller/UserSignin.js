@@ -14,7 +14,7 @@ async function UserSigninController(req, res) {
       });
     }
 
-    const user = await UserModel.findOne({ email });
+    const user = await UserModel.findOne({ email }).select('+password');
     if (!user) {
       return res.status(404).json({ 
         message: "User not found", 
@@ -35,6 +35,7 @@ async function UserSigninController(req, res) {
     const tokenData = {
       _id: user._id,
       email: user.email,
+      role: user.role,
     };
     const token = jwt.sign(tokenData, process.env.TOKEN_SECRET_KEY, {
       expiresIn: '7h',
@@ -48,7 +49,7 @@ async function UserSigninController(req, res) {
 
     res.cookie('token', token, tokenOptions);
 
-    res.status(200).json({
+    res.status(201).json({
       message: "Login successfully",
       data: token,
       success: true,

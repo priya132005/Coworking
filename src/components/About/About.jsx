@@ -16,14 +16,12 @@ export default function About() {
                       Finding place for temporary offices and meeting rooms..
                       </h2>
                       <p className="mt-6 text-gray-600">
-                          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eum omnis voluptatem
-                          accusantium nemo perspiciatis delectus atque autem! Voluptatum tenetur beatae unde
-                          aperiam, repellat expedita consequatur! Officiis id consequatur atque doloremque!
-                      </p>
-                      <p className="mt-4 text-gray-600">
-                          Nobis minus voluptatibus pariatur dignissimos libero quaerat iure expedita at?
-                          Asperiores nemo possimus nesciunt dicta veniam aspernatur quam mollitia.
-                      </p>
+                         Our Coworking  is an innovative online platform designed to help professionals, startups, and businesses effortlessly find temporary office spaces and meeting rooms anytime, anywhere. Whether you're traveling, working remotely, or simply in need of a flexible workspace, our platform connects you to fully-equipped, professional environments across multiple locations. With an intuitive interface and real-time availability, users can easily search, filter, and book spaces that meet their specific needs—be it for an hour, a day, or longer durations.</p>
+
+                         
+<p className="mt-6 text-gray-600">
+What sets our platform apart is its commitment to providing a pure working environment—spaces that are not only functional but also quiet, clean, and productivity-focused. We ensure that every listing meets high standards for connectivity, privacy, and comfort, fostering a seamless work experience. This project bridges the gap between mobility and professionalism, empowering users to maintain peak productivity regardless of where they are.
+                 </p>
                   </div>
               </div>
           </div>

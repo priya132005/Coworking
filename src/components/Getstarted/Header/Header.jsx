@@ -11,6 +11,10 @@ import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
 import "swiper/css";
 // import "./Residencies.css";
 import { sliderSettings } from "../../../utils/common";
+import { Navigation, Pagination } from "swiper/modules";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+
 
 import CountUp from "react-countup";
 import { motion } from "framer-motion";
@@ -92,7 +96,9 @@ const Header = () => {
           </div>
 
           
-         <div className="search-bar"> <IoMdSearch /> <input type="search" /></div>
+          <div className="search-bar">
+              <IoMdSearch /> <input type="search" placeholder="Search..." />
+            </div>
           <div className="flexCenter stats">
             <div className="flexColCenter stat">
               <span>
@@ -139,24 +145,29 @@ const Header = () => {
           <span className="orangeText">Choose Us</span>
           <span className="primaryText">For best Working environment</span>
         </div>
-        <Swiper {...sliderSettings}>
-          <SlideNextButton />
-          {/* slider */}
-          {data.map((card, i) => (
-            <SwiperSlide key={i}>
-              <div className="flexColStart r-card">
-                <img src={card.image} alt="home" />
+       <div className="r-wrapper-slider">
+  <Swiper
+    {...sliderSettings}
+    modules={[Navigation, Pagination]}
+    navigation
+    pagination={{ clickable: true }}
+  >
+    {data.map((card, i) => (
+      <SwiperSlide key={i}>
+        <div className="flexColStart r-card">
+          <img src={card.image} alt="home" />
+          <span className="secondaryText r-price">
+            <span style={{ color: "orange" }}>$</span>
+            <span>{card.price}</span>
+          </span>
+          <span className="primaryText">{card.name}</span>
+          <span className="secondaryText">{card.detail}</span>
+        </div>
+      </SwiperSlide>
+    ))}
+  </Swiper>
+</div>
 
-                <span className="secondaryText r-price">
-                  <span style={{ color: "orange" }}>$</span>
-                  <span>{card.price}</span>
-                </span>
-                <span className="primaryText">{card.name}</span>
-                <span className="secondaryText">{card.detail}</span>
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
       </div>
     </div><section id="value" className="v-wrapper">
       <div className="paddings innerWidth flexCenter v-container">

@@ -1,25 +1,25 @@
 import { HiShieldCheck } from "react-icons/hi";
 import { MdCancel, MdAnalytics } from "react-icons/md";
 
-const data = [
+const features = [
   {
     icon: <HiShieldCheck />,
-    heading: "Best interest rates on the market",
+    heading: "Secure & Hassle-Free Workspaces",
     detail:
-      "Exercitation in fugiat est ut ad ea cupidatat ut in cupidatat occaecat ut occaecat consequat est minim minim esse tempor laborum consequat esse adipisicing eu reprehenderit enim.",
+      "All our coworking spaces are fully secured and professionally managed to ensure a smooth and productive work environment.",
   },
   {
     icon: <MdCancel />,
-    heading: "Prevent unstable prices",
+    heading: "No Hidden Charges",
     detail:
-      "Exercitation in fugiat est ut ad ea cupidatat ut in cupidatat occaecat ut occaecat consequat est minim minim esse tempor laborum consequat esse adipisicing eu reprehenderit enim.",
+      "Transparent pricing with zero hidden costs. You pay only for what you use — no surprises, no extra fees.",
   },
   {
     icon: <MdAnalytics />,
-    heading: "Best price on the market",
+    heading: "Smart Booking & Analytics",
     detail:
-      "Exercitation in fugiat est ut ad ea cupidatat ut in cupidatat occaecat ut occaecat consequat est minim minim esse tempor laborum consequat esse adipisicing eu reprehenderit enim.",
+      "Our intelligent dashboard helps you track usage, manage bookings, and gain insights to optimize your workspace needs.",
   },
 ];
 
-export default data;
+export default features;

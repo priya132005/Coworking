@@ -3,7 +3,8 @@ import mongoose from 'mongoose';
 const userSchema = new mongoose.Schema({
     name: {
         type: String,
-        required: true
+        required: true,
+        trim: true
     },
     email: {
         type: String,
@@ -12,12 +13,25 @@ const userSchema = new mongoose.Schema({
     },
     password: {
         type: String,
-        required: true
+        required: true,
+        minLength:[5,'Password must be atleast 8 characters']
+        
     },
+   
     role: {
         type: String,
+        enum:['GENERAL','ADMIN'],
         default: 'GENERAL'
+    }, avatar:{
+        public_id:{
+            type: String
+        },
+        secure_url:{
+            type: String
+        }
+
     }
+
 }, {
     timestamps: true
 });

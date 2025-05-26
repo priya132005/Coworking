@@ -1,38 +1,38 @@
 [
-    {
-      "name": "Aliva Priva Jardin",
-      "price": "47,043",
-      "detail": "Jakarta Garden City Street, Cakung. Pulo Gadung, Jakarta Timur, DKI Jakarta",
-      "image": "https://media.istockphoto.com/id/1460755337/photo/white-color-theme-modern-style-office-with-exposed-concrete-floor-and-a-lot-of-plant-3d.jpg?s=612x612&w=0&k=20&c=PX1TFWVrLL34jgkmFREmxrzy3M4rqhBk4NMrHFOTmo8="
-    },
-    {
-      "name": "Asatti Garden City",
-      "price": "66,353",
-      "detail": "Pahlawan Street XVII No.215, Cinangka, Sawangan, Depok, Jawa Barat",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Coworking_Space_in_Berlin.jpg/640px-Coworking_Space_in_Berlin.jpg"
-    },
-    {
-      "name": "Citralan Puri Serang",
-      "price": "35,853",
-      "detail": "Ruko Puri Indah Residence Block A7, Lingkar Street, Ciracas, Serang, Banten",
-      "image": "https://workloft.in/wp-content/uploads/2020/03/Coworkingspace-launchpad.jpg"
-    },
-    {
-      "name": "Casa de Avila",
-      "price": "47,043",
-      "detail": "Jakarta Garden City Street, Cakung. Pulo Gadung, Jakarta Timur, DKI Jakarta",
-      "image": "https://media.istockphoto.com/id/1247371878/photo/wide-angle-view-of-a-modern-loft-open-space-office-with-businesspeople-working-in-it.jpg?s=612x612&w=0&k=20&c=DsEE9SaBNv3dm3JxzYNuuwbdjy9KV7h5GFFvbsujAAw="
-    },
-    {
-      "name": "Asatti Garden City",
-      "price": "66,353",
-      "detail": "Pahlawan Street XVII No.215, Cinangka, Sawangan, Depok, Jawa Barat",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Coworking_Space_in_Berlin.jpg/640px-Coworking_Space_in_Berlin.jpg"
-    },
-    {
-      "name": "Citralan Puri Serang",
-      "price": "35,853",
-      "detail": "Ruko Puri Indah Residence Block A7, Lingkar Street, Ciracas, Serang, Banten",
-      "image": "https://workloft.in/wp-content/uploads/2020/03/Coworkingspace-launchpad.jpg"
-    }
-  ]
+  {
+    "name": "SpringHive Hyderabad Central",
+    "price": "47,043",
+    "detail": "Road No. 2, Banjara Hills, Hyderabad, Telangana",
+    "image": "https://media.istockphoto.com/id/1460755337/photo/white-color-theme-modern-style-office-with-exposed-concrete-floor-and-a-lot-of-plant-3d.jpg?s=612x612&w=0&k=20&c=PX1TFWVrLL34jgkmFREmxrzy3M4rqhBk4NMrHFOTmo8="
+  },
+  {
+    "name": "TechNest Bangalore Heights",
+    "price": "66,353",
+    "detail": "Indiranagar 100 Feet Road, Bengaluru, Karnataka",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Coworking_Space_in_Berlin.jpg/640px-Coworking_Space_in_Berlin.jpg"
+  },
+  {
+    "name": "CoreHub Pune Nexus",
+    "price": "35,853",
+    "detail": "Baner Road, Aundh, Pune, Maharashtra",
+    "image": "https://workloft.in/wp-content/uploads/2020/03/Coworkingspace-launchpad.jpg"
+  },
+  {
+    "name": "WorkLounge Delhi Connect",
+    "price": "47,043",
+    "detail": "Green Park Extension, South Delhi, Delhi",
+    "image": "https://media.istockphoto.com/id/1247371878/photo/wide-angle-view-of-a-modern-loft-open-space-office-with-businesspeople-working-in-it.jpg?s=612x612&w=0&k=20&c=DsEE9SaBNv3dm3JxzYNuuwbdjy9KV7h5GFFvbsujAAw="
+  },
+  {
+    "name": "TechNest Bangalore Sphere",
+    "price": "66,353",
+    "detail": "Koramangala 5th Block, Bengaluru, Karnataka",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Coworking_Space_in_Berlin.jpg/640px-Coworking_Space_in_Berlin.jpg"
+  },
+  {
+    "name": "CoreHub Pune Heights",
+    "price": "35,853",
+    "detail": "JM Road, Shivajinagar, Pune, Maharashtra",
+    "image": "https://workloft.in/wp-content/uploads/2020/03/Coworkingspace-launchpad.jpg"
+  }
+]
