@@ -7,28 +7,28 @@ async function UserSigninController(req, res) {
     const { email, password } = req.body;
 
     if (!email || !password) {
-      return res.status(400).json({ 
-        message: "Please provide email and password", 
-        error: true, 
-        success: false 
+      return res.status(400).json({
+        message: "Please provide email and password",
+        error: true,
+        success: false
       });
     }
 
     const user = await UserModel.findOne({ email }).select('+password');
     if (!user) {
-      return res.status(404).json({ 
-        message: "User not found", 
-        error: true, 
-        success: false 
+      return res.status(404).json({
+        message: "User not found",
+        error: true,
+        success: false
       });
     }
 
     const checkPassword = await bcrypt.compare(password, user.password);
     if (!checkPassword) {
-      return res.status(401).json({ 
-        message: "Invalid password", 
-        error: true, 
-        success: false 
+      return res.status(401).json({
+        message: "Invalid password",
+        error: true,
+        success: false
       });
     }
 
@@ -37,6 +37,7 @@ async function UserSigninController(req, res) {
       email: user.email,
       role: user.role,
     };
+
     const token = jwt.sign(tokenData, process.env.TOKEN_SECRET_KEY, {
       expiresIn: '7h',
     });
@@ -49,9 +50,16 @@ async function UserSigninController(req, res) {
 
     res.cookie('token', token, tokenOptions);
 
+    // ✅ Include user info in response (frontend needs this)
     res.status(201).json({
       message: "Login successfully",
-      data: token,
+      user: {
+        _id: user._id,
+        email: user.email,
+        name: user.name,
+        role: user.role,
+        avatar: user.avatar,
+      },
       success: true,
       error: false,
     });
