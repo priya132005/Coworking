@@ -23,8 +23,9 @@ async function UserSigninController(req, res) {
       });
     }
 
-    const checkPassword = await bcrypt.compare(password, user.password);
-    if (!checkPassword) {
+    // ✅ Compare password (you can also use user.comparePassword)
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+    if (!isPasswordValid) {
       return res.status(401).json({
         message: "Invalid password",
         error: true,
@@ -50,7 +51,6 @@ async function UserSigninController(req, res) {
 
     res.cookie('token', token, tokenOptions);
 
-    // ✅ Include user info in response (frontend needs this)
     res.status(201).json({
       message: "Login successfully",
       user: {

@@ -1,5 +1,4 @@
 import UserModel from '../Models/UserModel.js';
-import bcrypt from 'bcryptjs';
 import path from 'path';
 import fs from 'fs';
 
@@ -18,25 +17,21 @@ async function UserSignupController(req, res) {
       throw new Error("User already exists");
     }
 
-    // Hash the password
-    const salt = bcrypt.genSaltSync(10);
-    const hashPassword = await bcrypt.hash(password, salt);
-
     // Prepare avatar info if file is uploaded
     let avatar = {};
     if (req.file) {
       const filePath = req.file.path; // e.g., uploads/avatar.jpg
       avatar = {
-        public_id: path.basename(filePath), // filename
-        secure_url: `${req.protocol}://${req.get('host')}/${filePath.replace(/\\/g, '/')}` // URL
+        public_id: path.basename(filePath),
+        secure_url: `${req.protocol}://${req.get('host')}/${filePath.replace(/\\/g, '/')}`,
       };
     }
 
-    // Create user payload
+    // Create user payload — password will be hashed automatically by schema middleware
     const payload = {
       email,
       name,
-      password: hashPassword,
+      password,         // ✅ Plain password — hashing done in schema
       role: "GENERAL",
       avatar
     };
