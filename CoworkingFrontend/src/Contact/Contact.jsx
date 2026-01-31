@@ -1,82 +1,62 @@
-import React from "react";
-import "./Contact.css";
-import { MdCall } from "react-icons/md";
-import { BsFillChatDotsFill } from "react-icons/bs";
-import { HiChatBubbleBottomCenter } from 'react-icons/hi2';
+import React, { useState } from "react";
+import { toast } from "react-toastify";
 
-const backendDomain = "http://localhost:3000"; // Update if deployed
+const Contact = () => {
+  const [data, setData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
 
-const handleAction = async (actionType) => {
-  try {
-    const response = await fetch(`${backendDomain}/api/${actionType}`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        name: 'Priya',
-        email: 'coworking@gmail.com',
-        message: 'Hello!'
-      })
-    });
+  const handleChange = (e) => {
+    setData({ ...data, [e.target.name]: e.target.value });
+  };
 
-    const result = await response.text();
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-    if (!response.ok) {
-      throw new Error(result);
+    if (!data.name || !data.email || !data.message) {
+      toast.error("All fields are required");
+      return;
     }
 
-    alert(result);
-  } catch (error) {
-    alert('Error: ' + error.message);
-  }
-};
+    toast.success("Message sent successfully!");
+    setData({ name: "", email: "", message: "" });
+  };
 
-const modes = [
-  { type: 'call', label: 'Call', Icon: MdCall },
-  { type: 'chat', label: 'Chat', Icon: BsFillChatDotsFill },
-  { type: 'videoCall', label: 'Video Call', Icon: BsFillChatDotsFill },
-  { type: 'message', label: 'Message', Icon: HiChatBubbleBottomCenter },
-];
+  return (
+    <div className="max-w-xl p-6 mx-auto">
+      <h2 className="mb-4 text-3xl font-bold">Contact Us</h2>
 
-const Contact = () => (
-  <div id="contact-us" className="c-wrapper">
-    <div className="paddings innerWidth flexCenter c-container">
-      <div className="flexColStart c-left">
-        <span className="primaryText">Easy to contact us</span>
-        <span className="secondaryText">
-          We are always ready to help by providing the best services for you.
-          <h1><b>Get in touch for best working environment....</b></h1>
-        </span>
+      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+        <input
+          name="name"
+          placeholder="Your Name"
+          value={data.name}
+          onChange={handleChange}
+          className="p-2 border"
+        />
+        <input
+          name="email"
+          placeholder="Your Email"
+          value={data.email}
+          onChange={handleChange}
+          className="p-2 border"
+        />
+        <textarea
+          name="message"
+          placeholder="Your Message"
+          value={data.message}
+          onChange={handleChange}
+          className="p-2 border"
+        />
 
-        <div className="flexColStart contactModes">
-          <div className="flexStart row" style={{ flexWrap: 'wrap', gap: '1.5rem' }}>
-            {modes.map(({ type, label, Icon }, i) => (
-              <button key={i} className="flexColCenter mode" onClick={() => handleAction(type)}>
-                <div className="flexStart">
-                  <div className="flexCenter icon"><Icon size={25} /></div>
-                  <div className="flexColStart detail">
-                    <span className="primaryText">{label}</span>
-                    <span className="secondaryText">021 123 145 14</span>
-                  </div>
-                </div>
-                <div className="flexCenter button">{label} now</div>
-              </button>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      <div className="flexEnd c-right">
-        <div className="image-container">
-          <img
-            src="https://fancyhouse-design.com/wp-content/uploads/2023/11/The-CEOs-office-with-its-modern-art-and-luxury-finishes-reflects-a-balance-of-power-and-design..jpg"
-            alt="CEO Office"
-          />
-        </div>
-      </div>
+        <button className="py-2 text-white bg-pink-700 rounded">
+          Send Message
+        </button>
+      </form>
     </div>
-  </div>
-);
+  );
+};
 
 export default Contact;

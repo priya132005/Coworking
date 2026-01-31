@@ -19,7 +19,7 @@ import {
   messageHandler
 } from '../Controller/ContactController.js';
 
-// Routes
+// ✅ Auth routes
 router.post('/signup', upload.single('avatar'), UserSignupController);
 router.post('/signin', UserSigninController);
 router.get('/user-details', AuthToken, UserDetailsController);
@@ -27,13 +27,13 @@ router.post('/logout', UserLogout);
 router.post('/update-user', AuthToken, updateUserRole);
 router.get('/all-users', AuthToken, getAllUsers);
 
-// Contact routes
-router.post('/api/call', callHandler);
-router.post('/api/chat', chatHandler);
-router.post('/api/videoCall', videoCallHandler);
-router.post('/api/message', messageHandler);
+// ✅ Contact routes (FIXED ❌ removed /api)
+router.post('/call', callHandler);
+router.post('/chat', chatHandler);
+router.post('/videoCall', videoCallHandler);
+router.post('/message', messageHandler);
 
-// Password reset routes
+// ✅ Password reset
 router.post('/forgot-password', forgotPassword);
 router.post('/reset-password/:resetToken', resetPassword);
 

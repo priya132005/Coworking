@@ -1,57 +1,60 @@
 import UserModel from '../Models/UserModel.js';
 import path from 'path';
-import fs from 'fs';
 
 async function UserSignupController(req, res) {
   try {
-    const { email, password, name } = req.body;
+    // ✅ Works for BOTH JSON and multipart/form-data
+    const email = req.body?.email;
+    const password = req.body?.password;
+    const name = req.body?.name;
 
-    // Check for required fields
     if (!email || !password || !name) {
-      throw new Error("Please provide email, password, and name");
+      return res.status(400).json({
+        message: "Please provide email, password, and name",
+        success: false,
+        error: true,
+      });
     }
 
-    // Check if user already exists
     const existingUser = await UserModel.findOne({ email });
     if (existingUser) {
-      throw new Error("User already exists");
+      return res.status(400).json({
+        message: "User already exists",
+        success: false,
+        error: true,
+      });
     }
 
-    // Prepare avatar info if file is uploaded
+    // ✅ Avatar optional (feature preserved)
     let avatar = {};
     if (req.file) {
-      const filePath = req.file.path; // e.g., uploads/avatar.jpg
+      const filePath = req.file.path;
       avatar = {
         public_id: path.basename(filePath),
         secure_url: `${req.protocol}://${req.get('host')}/${filePath.replace(/\\/g, '/')}`,
       };
     }
 
-    // Create user payload — password will be hashed automatically by schema middleware
-    const payload = {
+    const user = await UserModel.create({
       email,
       name,
-      password,         // ✅ Plain password — hashing done in schema
+      password,   // hashing still done by schema
       role: "GENERAL",
-      avatar
-    };
-
-    // Save user to DB
-    const userData = new UserModel(payload);
-    const savedUser = await userData.save();
+      avatar,
+    });
 
     res.status(201).json({
-      data: savedUser,
+      data: user,
       success: true,
       error: false,
       message: "User signed up successfully!",
     });
 
   } catch (err) {
-    res.status(400).json({
-      message: err.message || "Something went wrong",
-      error: true,
+    res.status(500).json({
+      message: err.message || "Server error",
       success: false,
+      error: true,
     });
   }
 }

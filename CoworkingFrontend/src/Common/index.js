@@ -1,12 +1,26 @@
-const backendDomain = "http://localhost:3000";
+const BASE_URL = "http://localhost:3000/api";
 
 const SummaryApi = {
-  signUP: { url: `${backendDomain}/api/signup`, method: "POST" },
-  signIn: { url: `${backendDomain}/api/signin`, method: "POST" },
-//   current_user: { url: `${backendDomain}/api/user-details`, method: "GET" },
-  logout_user: { url: `${backendDomain}/api/logout`, method: "POST" },
-  forgetPassword: { url: `${backendDomain}/api/forget-password`, method: "POST" },
-  resetPassword: { url: `${backendDomain}/api/reset-password`, method: "POST" },
+  signUp: {
+    url: `${BASE_URL}/signup`,
+    method: "POST",
+  },
+  signIn: {
+    url: `${BASE_URL}/signin`,
+    method: "POST",
+  },
+  userDetails: {
+    url: `${BASE_URL}/user-details`,
+    method: "GET",
+  },
+  allUsers: {
+    url: `${BASE_URL}/all-users`,
+    method: "GET",
+  },
+  createBooking: {
+    url: `${BASE_URL}/booking`,
+    method: "POST",
+  },
 };
 
 export default SummaryApi;
