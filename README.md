@@ -88,7 +88,7 @@ Integrated Multer for workspace image uploads and storage.
 
 ---
 
-## 📸 Screenshots
+## 📸 Application Screenshots
 
 ### 🏠 Home Page
 
@@ -110,7 +110,14 @@ Integrated Multer for workspace image uploads and storage.
 
 ## 🚀 Installation
 
-### Backend Setup
+### 1️⃣ Clone the Repository
+
+```bash
+git clone <repository-url>
+cd coworking
+```
+
+### 2️⃣ Backend Setup
 
 ```bash
 cd CoworkingBackend/Coworkingbackend
@@ -122,7 +129,7 @@ npm run seed
 npm run dev
 ```
 
-### Frontend Setup
+### 3️⃣ Frontend Setup
 
 ```bash
 cd CoworkingFrontend
@@ -130,6 +137,24 @@ cd CoworkingFrontend
 npm install
 
 npm run dev
+```
+
+---
+
+## ⚙️ Environment Variables
+
+Create a `.env` file inside the backend directory and configure:
+
+```env
+PORT=3000
+NODE_ENV=development
+
+MONGODB_URI=your_mongodb_connection_string
+
+JWT_SECRET=your_jwt_secret
+
+EMAIL_USER=your_email
+EMAIL_PASS=your_email_password
 ```
 
 ---
@@ -144,27 +169,47 @@ CoworkingBackend/
     ├── Routes/
     ├── Middleware/
     ├── uploads/
+    ├── Config/
     └── server.js
 
 CoworkingFrontend/
 ├── public/
+│   ├── home.png
+│   ├── space.png
+│   ├── booking.png
+│   └── Admin.png
 ├── src/
 └── vite.config.js
 ```
 
 ---
 
+## 🌟 Highlights
 
+* Full-Stack MERN Application
+* RESTful API Architecture
+* Secure JWT Authentication
+* Role-Based Authorization
+* Real-Time Booking Validation
+* Image Upload Functionality
+* Email-Based Password Recovery
+* Responsive User Interface
+* Admin Dashboard & Analytics
+* MongoDB Atlas Integration
+
+---
 
 ## 🔮 Future Improvements
 
-* Stripe/Razorpay Integration
+* Stripe/Razorpay Payment Integration
 * Google OAuth Authentication
 * Workspace Reviews & Ratings
-* Cloudinary/S3 Image Storage
+* Cloudinary / AWS S3 Image Storage
 * Real-Time Notifications
-* Analytics Dashboard
-* Multi-Vendor Support
+* Advanced Analytics Dashboard
+* Multi-Vendor Workspace Management
+* Calendar Synchronization
+* Mobile Application Support
 
 ---
 
@@ -172,4 +217,4 @@ CoworkingFrontend/
 
 Built using the MERN Stack to demonstrate full-stack application development, REST API design, authentication and authorization, booking workflow management, database modeling, file uploads, email integration, and deployment-ready architecture.
 
-This project showcases practical experience in developing scalable web applications with modern frontend and backend technologies.
+This project showcases practical experience in developing scalable web applications using modern frontend and backend technologies.
