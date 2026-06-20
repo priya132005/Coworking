@@ -92,21 +92,19 @@ Integrated Multer for workspace image uploads and storage.
 
 ### 🏠 Home Page
 
-![Home Page](./CoworkingFrontend/public/home.png)
+![Home Page](./Coworking-Platform/CoworkingFrontend/public/home.png)
 
 ### 🔍 Space Listings
 
-![Space Listings](./CoworkingFrontend/public/space.png)
+![Space Listings](./Coworking-Platform/CoworkingFrontend/public/space.png)
 
 ### 📅 Booking Flow
 
-![Booking Flow](./CoworkingFrontend/public/booking.png)
+![Booking Flow](./Coworking-Platform/CoworkingFrontend/public/booking.png)
 
 ### ⚙️ Admin Dashboard
 
-![Admin Dashboard](./CoworkingFrontend/public/Admin.png)
-
----
+![Admin Dashboard](./Coworking-Platform/CoworkingFrontend/public/Admin.png)
 
 ## 🚀 Installation
 
