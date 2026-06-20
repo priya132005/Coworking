@@ -108,14 +108,9 @@ Integrated Multer for workspace image uploads and storage.
 
 ## 🚀 Installation
 
-### 1️⃣ Clone the Repository
 
-```bash
-git clone <repository-url>
-cd coworking
-```
 
-### 2️⃣ Backend Setup
+###  Backend Setup
 
 ```bash
 cd CoworkingBackend/Coworkingbackend
@@ -127,7 +122,7 @@ npm run seed
 npm run dev
 ```
 
-### 3️⃣ Frontend Setup
+###  Frontend Setup
 
 ```bash
 cd CoworkingFrontend
