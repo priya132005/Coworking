@@ -1,0 +1,278 @@
+/* ================= ROOT ================= */
+:root {
+  --primary: #1f3e72;
+  --secondary: rgba(255, 255, 255, 0.78);
+  --pink: rgb(233, 18, 54);
+  --blue-gradient: linear-gradient(97.05deg, #3f519a 3.76%, #2c4193 100%);
+  --orange-gradient: linear-gradient(270deg, #291006 0%, #190e04 100%);
+  --blue: #3f4e87;
+  --lightBlue: #eeeeff;
+  --shadow: 0px 23px 21px -8px rgba(37, 51, 105, 0.25);
+}
+
+/* ================= RESET ================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ================= UTILS ================= */
+.innerWidth {
+  width: 100%;
+  max-width: 1280px;
+  margin: auto;
+}
+
+.paddings {
+  padding: 1.5rem;
+}
+
+.flexCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flexColStart {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.primaryText {
+  color: var(--primary);
+  font-weight: bold;
+  font-size: 2rem;
+}
+
+.secondaryText {
+  color: #333;
+  font-size: 0.9rem;
+}
+
+.orangeText {
+  color: rgb(27, 22, 11);
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+/* ================= BUTTON ================= */
+.button {
+  padding: 0.6rem 1.4rem;
+  background: var(--blue-gradient);
+  border: none;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.button:hover {
+  transform: scale(1.05);
+}
+
+/* ================= HEADER ================= */
+.h-wrapper {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.h-container {
+  justify-content: space-between;
+  color: var(--secondary);
+}
+
+.h-menu {
+  display: flex;
+  gap: 2rem;
+}
+
+.menu-icon {
+  display: none;
+}
+
+/* MOBILE MENU FIX (CLICKABLE) */
+@media (max-width: 768px) {
+  .menu-icon {
+    display: block;
+    z-index: 2000;
+  }
+
+  .h-menu {
+    position: absolute;
+    top: 4rem;
+    right: 1rem;
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    flex-direction: column;
+    gap: 1.5rem;
+    z-index: 1500;
+  }
+
+  .h-menu a,
+  .h-menu button {
+    color: black;
+    pointer-events: auto;
+  }
+}
+
+/* ================= HERO ================= */
+.hero-wrapper {
+  padding-bottom: 3rem;
+}
+
+.hero-container {
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.hero-left {
+  gap: 3rem;
+}
+
+.hero-title h1 {
+  font-size: 3.8rem;
+  line-height: 4rem;
+}
+
+.orange-circle {
+  height: 4rem;
+  width: 4rem;
+  background: var(--orange-gradient);
+  border-radius: 50%;
+  position: absolute;
+  top: -10%;
+  right: 28%;
+  z-index: -1;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  width: 50%;
+  background: white;
+  padding: 0.6rem 1rem;
+  border-radius: 15px;
+  border: 2px solid black;
+}
+
+.search-bar input {
+  border: none;
+  outline: none;
+  width: 100%;
+}
+
+.stats {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.stat span:first-child {
+  font-size: 2rem;
+}
+
+/* HERO IMAGE */
+.hero-right .image-container {
+  width: 30rem;
+  height: 35rem;
+  border-radius: 15rem 15rem 0 0;
+  overflow: hidden;
+  border: 8px solid rgba(255, 255, 255, 0.12);
+}
+
+.hero-right img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ================= SLIDER ================= */
+.r-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.r-head {
+  margin-bottom: 2rem;
+}
+
+/* ================= VALUE (FIXED AS ORIGINAL) ================= */
+.v-container {
+  display: flex;
+  gap: 3rem;
+  align-items: center;
+}
+
+.v-left {
+  flex: 1;
+}
+
+.v-left img {
+  width: 100%;
+  height: 100%;
+  border-radius: 1rem;
+  border: 8px solid rgb(232 232 232 / 93%);
+}
+
+.v-right {
+  flex: 1;
+  gap: 1rem;
+}
+
+/* ACCORDION */
+.accordionButton {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: white;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.icon {
+  background: var(--lightBlue);
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.icon svg {
+  fill: var(--blue);
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 1024px) {
+  .v-container {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-title h1 {
+    font-size: 2.5rem;
+    line-height: 3rem;
+  }
+
+  .search-bar {
+    width: 100%;
+  }
+
+  .stats {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .hero-right .image-container {
+    width: 95%;
+    height: 25rem;
+  }
+}

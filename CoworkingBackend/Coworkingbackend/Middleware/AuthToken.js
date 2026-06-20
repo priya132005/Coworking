@@ -1,26 +1,23 @@
 import jwt from "jsonwebtoken";
-// import userModel from '../Models/UserModel.js';
+import UserModel from "../Models/UserModel.js";
 
-export const AuthToken = async (req, res, next) => {
-  const token = req.cookies.token; // Assuming the token is stored in cookies
-
-  if (!token) {
-    return res.status(401).json({
-      message: "No token provided",
-      error: true,
-      success: false,
-    });
-  }
-
+const AuthToken = async (req, res, next) => {
   try {
-    const decoded = jwt.verify(token, process.env.TOKEN_SECRET_KEY); // Verify the token
-    req.userID = decoded._id; // Set the user ID in the request object
-    next(); // Proceed to the next middleware/controller
+    const token = req.cookies.token;
+    if (!token)
+      return res.status(401).json({ message: "Unauthorized", success: false, error: true });
+
+    const decoded = jwt.verify(token, process.env.TOKEN_SECRET_KEY);
+    const user = await UserModel.findById(decoded._id);
+    if (!user)
+      return res.status(401).json({ message: "Unauthorized", success: false, error: true });
+
+    req.user = user;
+    next();
   } catch (err) {
-    res.status(401).json({
-      message: "Invalid token",
-      error: true,
-      success: false,
-    });
+    console.error("AuthToken error:", err);
+    res.status(401).json({ message: "Invalid token", success: false, error: true });
   }
 };
+
+export default AuthToken;

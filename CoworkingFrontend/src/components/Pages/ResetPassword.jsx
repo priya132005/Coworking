@@ -1,97 +1,81 @@
-import React, { useState } from 'react';
-import { toast } from 'react-toastify';
-import { useParams, useNavigate } from 'react-router-dom';
-import SummaryApi from '../../Common/index.js';
+import React, { useState } from "react";
+import { FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
+import { useParams, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import SummaryApi from "../../Common";
 
-const ResetPassword = () => {
-  const { resetToken } = useParams();
+function ResetPassword() {
+  const { token } = useParams();
   const navigate = useNavigate();
 
-  const [data, setData] = useState({
-    password: '',
-    cnfPassword: '',
-  });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setData(prev => ({ ...prev, [name]: value }));
-  };
+  const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!data.password || !data.cnfPassword) {
-      toast.error("All fields are mandatory");
+    if (!password.trim()) {
+      toast.error("Password cannot be empty");
       return;
     }
 
-    if (!data.password.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}$/)) {
-      toast.error("Password must be 8-20 chars with uppercase, lowercase, and number");
-      return;
-    }
-
-    if (data.password !== data.cnfPassword) {
-      toast.error("Passwords do not match");
-      return;
-    }
-
+    setLoading(true);
     try {
-      const response = await fetch(`${SummaryApi.resetPassword.url}/${resetToken}`, {
-        method: SummaryApi.resetPassword.method,
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ password: data.password }),
+      const res = await fetch(`${SummaryApi.resetPassword.url}/${token}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ password: password.trim() }),
       });
 
-      const result = await response.json();
+      const data = await res.json();
 
-      if (result.success) {
-        toast.success(result.message || "Password reset successful");
-        navigate('/loginpriya');
-      } else {
-        toast.error(result.message || "Failed to reset password");
-      }
-    } catch (error) {
-      toast.error("Something went wrong");
+      if (!data.success) throw new Error(data.message);
+
+      toast.success("Password reset successful");
+      navigate("/loginpriya");
+    } catch (err) {
+      toast.error(err.message || "Reset failed");
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <section id="reset-password" className="container max-w-md p-4 mx-auto">
-      <h1 className="mb-6 text-2xl font-bold text-center">Reset Password</h1>
-      <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
-        <label>New Password:</label>
-        <input
-          type="password"
-          name="password"
-          placeholder="Enter new password"
-          value={data.password}
-          onChange={handleChange}
-          required
-          className="p-2 border rounded bg-gray-50"
-        />
+    <div className="max-w-md p-6 mx-auto mt-10 bg-white rounded shadow">
+      <div className="flex justify-center mb-4 text-3xl text-pink-700">
+        <FaLock />
+      </div>
 
-        <label>Confirm Password:</label>
-        <input
-          type="password"
-          name="cnfPassword"
-          placeholder="Confirm new password"
-          value={data.cnfPassword}
-          onChange={handleChange}
-          required
-          className="p-2 border rounded bg-gray-50"
-        />
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <div className="flex items-center p-2 bg-pink-200">
+          <input
+            type={showPassword ? "text" : "password"}
+            placeholder="New Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="w-full bg-transparent outline-none"
+          />
+          <span
+            className="cursor-pointer"
+            onClick={() => setShowPassword((prev) => !prev)}
+          >
+            {showPassword ? <FaEyeSlash /> : <FaEye />}
+          </span>
+        </div>
 
         <button
           type="submit"
-          className="py-2 text-white transition bg-pink-900 rounded hover:bg-pink-700"
+          disabled={loading}
+          className={`w-full p-2 text-white rounded ${
+            loading ? "bg-pink-400" : "bg-pink-900 hover:bg-pink-800"
+          }`}
         >
-          Reset Password
+          {loading ? "Resetting..." : "Reset Password"}
         </button>
       </form>
-    </section>
+    </div>
   );
-};
+}
 
 export default ResetPassword;

@@ -2,16 +2,16 @@ const UserLogout = async (req, res) => {
   try {
     res.clearCookie("token");
     res.json({
-      message: "Logout successfully",
-      error: false,
+      message: "Logout successful",
       success: true,
-      data: []
+      error: false,
+      data: [],
     });
   } catch (err) {
-    res.json({ 
-      message: err.message || err,
-      error: true,
+    res.status(500).json({
+      message: err.message || "Server error",
       success: false,
+      error: true,
     });
   }
 };

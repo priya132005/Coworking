@@ -1,128 +1,123 @@
-import React, { useContext, useState } from 'react';
-import { FaUser, FaEye, FaEyeSlash } from 'react-icons/fa';
-import { Link, useNavigate } from 'react-router-dom';
-import SummaryApi from '../../Common/index.js';
-import { toast } from 'react-toastify';
-import Context from '../../Context/index.js';
-import { useDispatch } from 'react-redux';
-import { setUserDetails } from '../../Store/UserSlice.js';
+import React, { useState } from "react";
+import { FaUser, FaEye, FaEyeSlash } from "react-icons/fa";
+import { Link, useNavigate } from "react-router-dom";
+import SummaryApi from "../../Common";
+import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { setUserDetails } from "../../Store/UserSlice";
 
 function Login() {
   const [showPassword, setShowPassword] = useState(false);
-  const [data, setData] = useState({
-    email: "",
-    password: ""
-  });
+  const [loading, setLoading] = useState(false);
+  const [data, setData] = useState({ email: "", password: "" });
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { fetchUserDetails } = useContext(Context);
 
   const handleOnChange = (e) => {
     const { name, value } = e.target;
-    setData((prev) => ({
-      ...prev,
-      [name]: value
-    }));
+    setData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Submitting form...", data); // 🪵 Debug
+
+    if (!data.email.trim() || !data.password.trim()) {
+      toast.error("Email and password cannot be empty");
+      return;
+    }
+
+    setLoading(true);
 
     try {
-      const dataResponse = await fetch(SummaryApi.signIn.url, {
-        method: SummaryApi.signIn.method,
+      const res = await fetch(SummaryApi.signIn.url, {
+        method: "POST",
         credentials: "include",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(data),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: data.email.trim(),
+          password: data.password.trim(),
+        }),
       });
 
-      const dataApi = await dataResponse.json();
-      console.log("Login API response:", dataApi); // 🪵 Debug
+      const result = await res.json();
 
-      if (dataApi.success) {
-        toast.success(dataApi.message);
-        dispatch(setUserDetails(dataApi.user));
-        fetchUserDetails();
-        navigate('/');
-      } else {
-        toast.error(dataApi.message);
+      if (!res.ok || !result.success) {
+        throw new Error(result.message || "Login failed");
       }
-    } catch (err) {
-      console.error("Error while login:", err);
-      toast.error("Something went wrong!");
+
+      // ✅ SAVE USER
+      dispatch(setUserDetails(result.user));
+      localStorage.setItem("user", JSON.stringify(result.user));
+
+      toast.success("Login successful");
+      navigate("/");
+
+    } catch (error) {
+      console.error("Login error:", error);
+      toast.error(error.message || "Something went wrong");
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <section id='login'>
-      <div className="container p-4 mx-auto">
-        <div className="w-full max-w-md p-2 py-5 mx-auto bg-white">
-          <div className='w-20 h-20 mx-auto'>
-            <div className='text-3xl cursor-pointer'>
-              <FaUser />
-            </div>
-          </div>
-
-          <form className='flex flex-col gap-2 pt-6' onSubmit={handleSubmit}>
-            <div className="grid text-left">
-              <label>Email:</label>
-              <div className="p-2 bg-pink-200">
-                <input
-                  type='email'
-                  placeholder='Enter email...'
-                  name='email'
-                  value={data.email}
-                  onChange={handleOnChange}
-                  required
-                  className='w-full h-full bg-transparent outline-none'
-                />
-              </div>
-            </div>
-
-            <div className="mt-4 text-left">
-              <label>Password:</label>
-              <div className="flex p-2 bg-pink-200">
-                <input
-                  type={showPassword ? "text" : "password"}
-                  placeholder='Enter password...'
-                  name='password'
-                  value={data.password}
-                  onChange={handleOnChange}
-                  required
-                  className='w-full h-full bg-transparent outline-none'
-                  autoComplete='current-password'
-                />
-                <div
-                  className="ml-2 text-xl cursor-pointer"
-                  onClick={() => setShowPassword(prev => !prev)}
-                >
-                  {showPassword ? <FaEye /> : <FaEyeSlash />}
-                </div>
-              </div>
-              <Link to="/forget-password" className="block mt-2 ml-auto w-fit hover:underline hover:text-pink-600">
-                Forgot password?
-              </Link>
-            </div>
-
-            <button
-              type="submit"  // ✅ Must be submit type
-              className='block w-full max-w-xs px-6 py-2 mx-auto mt-6 text-white transition-all bg-pink-900 rounded-full hover:scale-90 hover:bg-pink-700'
-            >
-              Login
-            </button>
-          </form>
-
-          <p className='my-5 text-left'>
-            Don't have account?
-            <Link to="/sign-up" className="text-pink-600 hover:text-pink-900 hover:underline"> Sign up</Link>
-          </p>
-        </div>
+    <div className="max-w-md p-6 mx-auto mt-10 bg-white rounded shadow">
+      <div className="flex justify-center mb-4 text-3xl text-pink-700">
+        <FaUser />
       </div>
-    </section>
+
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <input
+          type="email"
+          name="email"
+          value={data.email}
+          onChange={handleOnChange}
+          placeholder="Email"
+          className="w-full p-2 bg-pink-200 outline-none"
+        />
+
+        <div className="flex items-center p-2 bg-pink-200">
+          <input
+            type={showPassword ? "text" : "password"}
+            name="password"
+            value={data.password}
+            onChange={handleOnChange}
+            placeholder="Password"
+            className="w-full bg-transparent outline-none"
+          />
+          <span
+            className="cursor-pointer"
+            onClick={() => setShowPassword((prev) => !prev)}
+          >
+            {showPassword ? <FaEyeSlash /> : <FaEye />}
+          </span>
+        </div>
+
+        <div className="text-right">
+          <Link to="/forget-password" className="text-sm text-pink-700">
+            Forgot password?
+          </Link>
+        </div>
+
+        <button
+          type="submit"
+          disabled={loading}
+          className={`w-full p-2 text-white rounded ${
+            loading ? "bg-pink-400" : "bg-pink-900 hover:bg-pink-800"
+          }`}
+        >
+          {loading ? "Logging in..." : "Login"}
+        </button>
+      </form>
+
+      <p className="mt-4 text-center">
+        Don&apos;t have an account?{" "}
+        <Link to="/sign-up" className="font-semibold text-pink-700">
+          Sign up
+        </Link>
+      </p>
+    </div>
   );
 }
 

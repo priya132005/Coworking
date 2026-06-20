@@ -8,6 +8,7 @@ import MainLayout from "../components/Layout/MainLayout";
 import Home from "../components/Home/Home";
 import Login from "../components/Pages/Login";
 import ForgetPassword from "../components/Pages/ForgetPassword";
+import VerifyOtp from "../components/Pages/VerifyOtp";
 import ResetPassword from "../components/Pages/ResetPassword";
 import Signup from "../components/Pages/Signup";
 import About from "../components/About/About";
@@ -21,6 +22,7 @@ import AdminDashboard from "../components/Admin/AdminDashboard";
 import AdminHome from "../components/Admin/AdminHome";
 import AdminBookings from "../components/Admin/AdminBookings";
 import AdminUsers from "../components/Admin/AdminUsers";
+
 import PaymentPage from "../components/Payment/PaymentPage";
 import PaymentSuccess from "../components/Payment/PaymentSuccess";
 import BookingPage from "../components/Booking/BookingPage";
@@ -32,8 +34,12 @@ const Router = createBrowserRouter([
     children: [
       { index: true, element: <Home /> },
       { path: "loginpriya", element: <Login /> },
+
+      // 🔐 OTP PASSWORD RECOVERY
       { path: "forget-password", element: <ForgetPassword /> },
-      { path: "reset-password/:resetToken", element: <ResetPassword /> },
+      { path: "verify-otp", element: <VerifyOtp /> },
+      { path: "reset-password", element: <ResetPassword /> },
+
       { path: "sign-up", element: <Signup /> },
       { path: "about", element: <About /> },
       { path: "contact", element: <Contact /> },
@@ -44,11 +50,11 @@ const Router = createBrowserRouter([
       // 🔐 Admin Routes
       {
         path: "admin",
-        element: <AdminRoute />, // guard only
+        element: <AdminRoute />,
         children: [
           {
             path: "dashboard",
-            element: <AdminDashboard />, // layout for admin dashboard
+            element: <AdminDashboard />,
             children: [
               { index: true, element: <AdminHome /> },
               { path: "bookings", element: <AdminBookings /> },

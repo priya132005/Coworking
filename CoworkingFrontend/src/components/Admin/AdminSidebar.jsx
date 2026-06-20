@@ -9,17 +9,19 @@ const AdminSidebar = () => {
 
   return (
     <aside className="w-64 min-h-screen p-6 text-white bg-gray-900">
-  <h2 className="mb-8 text-2xl font-bold">Admin Panel</h2>
-  <nav className="space-y-3">
-
-        <NavLink to="/admin/dashboard" className={linkStyle}>
+      <h2 className="mb-8 text-2xl font-bold">Admin Panel</h2>
+      <nav className="space-y-3">
+        <NavLink to="/admin/dashboard" end className={linkStyle}>
           Dashboard
         </NavLink>
-        <NavLink to="/admin/bookings" className={linkStyle}>
+        <NavLink to="/admin/dashboard/bookings" className={linkStyle}>
           Bookings
         </NavLink>
-        <NavLink to="/admin/users" className={linkStyle}>
+        <NavLink to="/admin/dashboard/users" className={linkStyle}>
           Users
+        </NavLink>
+        <NavLink to="/admin/dashboard/spaces" className={linkStyle}>
+          Spaces
         </NavLink>
       </nav>
     </aside>

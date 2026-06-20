@@ -1,62 +1,28 @@
-import UserModel from '../Models/UserModel.js';
-import path from 'path';
+import User from "../Models/UserModel.js";
 
-async function UserSignupController(req, res) {
+const UserSignup = async (req, res) => {
   try {
-    // ✅ Works for BOTH JSON and multipart/form-data
-    const email = req.body?.email;
-    const password = req.body?.password;
-    const name = req.body?.name;
+    const { name, email, password } = req.body;
 
-    if (!email || !password || !name) {
-      return res.status(400).json({
-        message: "Please provide email, password, and name",
-        success: false,
-        error: true,
-      });
+    if (!name || !email || !password) {
+      return res.status(400).json({ success: false, message: "All fields required" });
     }
 
-    const existingUser = await UserModel.findOne({ email });
-    if (existingUser) {
-      return res.status(400).json({
-        message: "User already exists",
-        success: false,
-        error: true,
-      });
+    const exists = await User.findOne({ email });
+    if (exists) {
+      return res.status(409).json({ success: false, message: "User already exists" });
     }
 
-    // ✅ Avatar optional (feature preserved)
-    let avatar = {};
-    if (req.file) {
-      const filePath = req.file.path;
-      avatar = {
-        public_id: path.basename(filePath),
-        secure_url: `${req.protocol}://${req.get('host')}/${filePath.replace(/\\/g, '/')}`,
-      };
-    }
-
-    const user = await UserModel.create({
-      email,
-      name,
-      password,   // hashing still done by schema
-      role: "GENERAL",
-      avatar,
-    });
+    const user = await User.create({ name, email, password });
 
     res.status(201).json({
-      data: user,
       success: true,
-      error: false,
-      message: "User signed up successfully!",
+      message: "Signup successful",
+      user: { _id: user._id, email: user.email }
     });
-
   } catch (err) {
-    res.status(500).json({
-      message: err.message || "Server error",
-      success: false,
-      error: true,
-    });
+    res.status(500).json({ success: false, message: err.message });
   }
-}
+};
 
-export default UserSignupController;
+export default UserSignup;

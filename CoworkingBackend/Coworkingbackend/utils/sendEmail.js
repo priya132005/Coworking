@@ -1,21 +1,21 @@
-import nodemailer from 'nodemailer';
+// utils/sendEmail.js
+import nodemailer from "nodemailer";
 
-const sendEmail = async (email, subject, message) => {
+const sendEmail = async (to, subject, text) => {
   const transporter = nodemailer.createTransport({
-    host: process.env.SMTP_HOST,
-    port: Number(process.env.SMTP_PORT),
-    secure: false,
+    host: "sandbox.smtp.mailtrap.io",
+    port: 2525,
     auth: {
-      user: process.env.SMTP_USERNAME,
-      pass: process.env.SMTP_PASSWORD,
+      user: process.env.MAILTRAP_USER,
+      pass: process.env.MAILTRAP_PASS,
     },
   });
 
   await transporter.sendMail({
-    from: process.env.SMTP_FROM_EMAIL,
-    to: email,
-    subject: subject,
-    html: message,
+    from: "no-reply@app.com",
+    to,
+    subject,
+    text,
   });
 };
 
